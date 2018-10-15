@@ -136,11 +136,11 @@ class UserRepository
                 'email'=>'email',
               )
           )
-          ->setParameter(':login', $parameters['login'])
-          ->setParameter(':password', $parameters['password'])
-          ->setParameter(':isNew', $parameters['isNew'])
-          ->setParameter(':dateCreation', $parameters['dateCreation'])
-          ->setParameter(':email', $parameters['email']);
+          ->setParameter(':login', "test")
+          ->setParameter(':password', "test")
+          ->setParameter(':isNew', true)
+          ->setParameter(':dateCreation', "test")
+          ->setParameter(':email', "test@live.fr");
         $statement = $queryBuilder->execute();
 
     }
