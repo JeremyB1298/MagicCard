@@ -124,7 +124,7 @@ class UserRepository
 
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-          ->insert('users')
+          ->insert('user')
           ->values(
               array(
                 'login' => ':login',
