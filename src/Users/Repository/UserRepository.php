@@ -135,9 +135,9 @@ class UserRepository
               )
           )
           ->setParameter(':login', $parameters['login'])
-          ->setParameter(':password', $parameters['password']);
-          ->setParameter(':isNew', $parameters['isNew']);
-          ->setParameter(':dateCreation', $parameters['dateCreation']);
+          ->setParameter(':password', $parameters['password'])
+          ->setParameter(':isNew', $parameters['isNew'])
+          ->setParameter(':dateCreation', $parameters['dateCreation'])
           ->setParameter(':email', $parameters['email']);
         $statement = $queryBuilder->execute();
 
