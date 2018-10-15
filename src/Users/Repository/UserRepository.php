@@ -143,4 +143,11 @@ class UserRepository
 
     }
 
+    public function connexionUser($parameters){
+        $queryBuilder = $this->db->createQueryBuilder();
+        
+
+
+    }
+
 }

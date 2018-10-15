@@ -49,11 +49,31 @@ class IndexController
 
     public function addInscriptionAction(Request $request, Application $app){
 
-        $parameters = $request->attributes->all();
+        $parameters =  array();
+        $content = $this->get("request")->getContent();
+        if (!empty($content))
+        {
+            $parameters = json_decode($content, true); // 2nd param to get as array
+        }
 
         $users=$app['repository.user']->inscriptionUser($parameters);
 
         return null;
 
     }
+
+    public function ConnexionAction(Request $request, Application $app){
+        $parameters =  array();
+    $content = $this->get("request")->getContent();
+    if (!empty($content))
+    {
+        $parameters = json_decode($content, true); // 2nd param to get as array
+    }
+
+        $users=$app['repository.user']->connexionUser($parameters);
+
+        return null;
+
+    }
+    
 }
