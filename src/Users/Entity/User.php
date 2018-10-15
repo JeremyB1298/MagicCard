@@ -6,51 +6,86 @@ class User
 {
     protected $id;
 
-    protected $nom;
+    protected $login;
 
-    protected $prenom;
+    protected $password;
 
-    public function __construct($id, $nom, $prenom)
+    protected $isNew;
+
+    protected $dateCreation;
+
+    protected $email;
+
+    public function __construct($id, $login, $password, $dateCreation, $email, $isNew)
     {
         $this->id = $id;
-        $this->prenom = $prenom;
-        $this->nom = $nom;
+        $this->login=$login;
+        $this->password=$password
+        $this->dateCreation=$dateCreation
+        $this->email=$email
+        $this->isNew=$isNew;
     }
 
-    public function setId($id)
+    public function setLogin($login)
     {
-        $this->id = $id;
+        $this->login = $login;
     }
 
-    public function setNom($nom)
+    public function setPassword($password)
     {
-        $this->nom = $nom;
+        $this->password = $password;
     }
 
-    public function setPrenom($prenom)
+    public function setDateCreation($dateCreation)
     {
-        $this->prenom = $prenom;
+        $this->dateCreation = $dateCreation;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setIsNew($isNew){
+
+        $this->isNew=$isNew;
+
     }
 
     public function getId()
     {
         return $this->id;
     }
-    public function getPrenom()
+    public function getPassword()
     {
-        return $this->prenom;
+        return $this->password;
     }
-    public function getNom()
+    public function getLogin()
     {
-        return $this->nom;
+        return $this->login;
+    }
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function getIsNew()
+    {
+        return $this->isNew;
     }
 
     public function toArray()
     {
         $array = array();
         $array['id'] = $this->id;
-        $array['nom'] = $this->nom;
-        $array['prenom'] = $this->prenom;
+        $array['login'] = $this->login;
+        $array['password'] = $this->password;
+        $array['dateCreation'] = $this->dateCreation;
+        $array['email'] = $this->email;
+        $array['isNew'] = $this->isNew;
 
         return $array;
     }

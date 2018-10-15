@@ -12,7 +12,7 @@ $app['db.options'] = array(
     'driver' => 'pdo_mysql',
     'host' => 'sql7.freemysqlhosting.net',
     'port' => '3306',
-    'dbname' => 'sql7261249',
-    'user' => 'sql7261249',
-    'password' => 'BIHvt7yXUk',
+    'dbname' => 'sql7261231',
+    'user' => 'sql7261231',
+    'password' => 'n7pZvWkRC4',
 );
