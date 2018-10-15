@@ -46,4 +46,14 @@ class IndexController
     // {
     //     return $app['twig']->render('users.form.html.twig');
     // }
+
+    public function addInscriptionAction(Request $request, Application $app){
+
+        $parameters = $request->attributes->all();
+
+        $users=$app['repository.user']->inscriptionUser($parameters);
+
+        return null;
+
+    }
 }

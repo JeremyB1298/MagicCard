@@ -6,3 +6,4 @@ $app->get('/users/new', 'App\Users\Controller\IndexController::newAction')->bind
 $app->post('/users/delete/{id}', 'App\Users\Controller\IndexController::deleteAction')->bind('users.delete');
 $app->post('/users/save', 'App\Users\Controller\IndexController::saveAction')->bind('users.save');*/
 
+$app->post('/inscription/log={login}&password={password}&new={isNew}&dateCreation={dateCreation}&email={email}','App/Users/Controller/IndexController::addInscriptionAction')->bind('users.addInscription');
