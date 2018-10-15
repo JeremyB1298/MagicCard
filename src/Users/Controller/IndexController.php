@@ -50,7 +50,7 @@ class IndexController
     public function addInscriptionAction(Request $request, Application $app){
 
         $parameters = $request->attributes->all();
-        var_dump($parameters);
+        
         
         $users=$app['repository.user']->inscriptionUser($parameters);
 

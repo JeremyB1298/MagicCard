@@ -122,6 +122,8 @@ class UserRepository
 
     public function inscriptionUser($parameters){
 
+        var_dump($parameters);
+
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
           ->insert('user')
