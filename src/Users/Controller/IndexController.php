@@ -51,7 +51,8 @@ class IndexController
 
         $parameters = $request->attributes->all();
 
-        var_dump($parameters['test']);die;
+        var_dump($parameters['login']);
+        die;
         
         $users=$app['repository.user']->inscriptionUser($parameters);
 
