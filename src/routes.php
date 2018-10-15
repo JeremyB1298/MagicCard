@@ -6,4 +6,4 @@ $app->get('/users/new', 'App\Users\Controller\IndexController::newAction')->bind
 $app->post('/users/delete/{id}', 'App\Users\Controller\IndexController::deleteAction')->bind('users.delete');
 $app->post('/users/save', 'App\Users\Controller\IndexController::saveAction')->bind('users.save');
 
-$app->post('/inscription','App/Users/Controller/IndexController::addInscriptionAction')->bind('users.addInscription');
+$app->post('/users/inscription','App/Users/Controller/IndexController::addInscriptionAction')->bind('users.addInscription');
