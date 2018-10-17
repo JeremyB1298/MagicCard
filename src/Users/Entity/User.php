@@ -6,39 +6,31 @@ class User
 {
     protected $id;
 
-    protected $login;
+    protected $idu;
 
-    protected $password;
+    protected $name;
 
     protected $isNew;
 
-    protected $dateCreation;
-
     protected $email;
 
-    public function __construct($id, $login, $password, $dateCreation, $email, $isNew)
+    public function __construct($id, $idu, $name, $email, $isNew)
     {
         $this->id = $id;
-        $this->login=$login;
-        $this->password=$password
-        $this->dateCreation=$dateCreation
+        $this->idu=$idu;
+        $this->name=$name
         $this->email=$email
         $this->isNew=$isNew;
     }
 
-    public function setLogin($login)
+    public function setIdu($idu)
     {
-        $this->login = $login;
+        $this->idu = $idu;
     }
 
-    public function setPassword($password)
+    public function setName($name)
     {
-        $this->password = $password;
-    }
-
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
+        $this->name = $name;
     }
 
     public function setEmail($email)
@@ -56,17 +48,13 @@ class User
     {
         return $this->id;
     }
-    public function getPassword()
+    public function getName()
     {
-        return $this->password;
+        return $this->name;
     }
-    public function getLogin()
+    public function getIdu()
     {
-        return $this->login;
-    }
-    public function getDateCreation()
-    {
-        return $this->dateCreation;
+        return $this->idu;
     }
     public function getEmail()
     {
@@ -81,9 +69,8 @@ class User
     {
         $array = array();
         $array['id'] = $this->id;
-        $array['login'] = $this->login;
-        $array['password'] = $this->password;
-        $array['dateCreation'] = $this->dateCreation;
+        $array['idu'] = $this->idu;
+        $array['name'] = $this->name;
         $array['email'] = $this->email;
         $array['isNew'] = $this->isNew;
 

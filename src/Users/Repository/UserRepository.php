@@ -145,4 +145,19 @@ class UserRepository
 
     }
 
+    public function getUser($idu){
+
+      $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('u.*')
+           ->from('users', 'u')
+           ->where('idu = ?')
+           ->setParameter(0, $idu);
+       $statement = $queryBuilder->execute();
+       $userData = $statement->fetchAll();
+
+       return new User($userData[0]['id'], $userData[0]['nom'], $userData[0]['prenom']);
+
+    }
+
 }
