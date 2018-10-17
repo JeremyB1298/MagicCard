@@ -156,7 +156,7 @@ class UserRepository
        $statement = $queryBuilder->execute();
        $userData = $statement->fetchAll();
 
-       return new User($userData[0]['id'], $userData[0]['nom'], $userData[0]['prenom']);
+       return new User($userData[0]['id'], $userData[0]['idu'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
 
     }
 
