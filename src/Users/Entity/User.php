@@ -17,10 +17,10 @@ class User
     public function __construct($id, $idu, $name, $email, $isNew)
     {
         $this->id = $id;
-        $this->idu=$idu;
-        $this->name=$name
-        $this->email=$email
-        $this->isNew=$isNew;
+        $this->idu = $idu;
+        $this->name = $name;
+        $this->email = $email;
+        $this->isNew = $isNew;
     }
 
     public function setIdu($idu)

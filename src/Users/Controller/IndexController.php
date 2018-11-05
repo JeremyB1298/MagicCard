@@ -67,5 +67,23 @@ class IndexController
          } 
 
     }
+    public function getUsersAction(Request $request, Application $app){
+
+      $users = $app['repository.user']->getAll();
+      var_dump($users);
+      die;
+    }
+    public function getUserCardsAction(Request $request, Application $app){
+       $parameters = $request->attributes->all();
+      $cardsId=$app['repository.user']->getCardsByIdUser($parameters['id']);
+      $tabCards = array();
+      foreach ($cardsId as $cardId) {
+         $card = $app['repository.card']->getCardById(intval($cardId['cardId']));
+         $card = $card[0];
+         array_push($tabCards, $card);
+      }
+      return $app['twig']->render('users.tabCards.html.twig', array('tabCards' => $tabCards));
+      die;
+    }
 
 }

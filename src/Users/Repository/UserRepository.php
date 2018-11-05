@@ -160,4 +160,28 @@ class UserRepository
 
     }
 
+    public function getAll(){
+
+       $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+            ->select('u.*')
+            ->from('users', 'u');
+
+        $statement = $queryBuilder->execute();
+        $usersData = $statement->fetchAll();
+        var_dump($usersData);
+        die;
+}
+
+    public function getCardsByIdUser($id){
+      $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('uc.*')
+            ->from('usercards', 'uc')
+            ->where('userId = ?')
+            ->setParameter(0, $id);
+        $statement = $queryBuilder->execute();
+        $userCardsData = $statement->fetchAll();
+        return $userCardsData;
+    }
 }
