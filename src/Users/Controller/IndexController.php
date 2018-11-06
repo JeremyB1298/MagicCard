@@ -53,9 +53,7 @@ class IndexController
       
       if(isset($user)){
          $jsonUser = json_encode($user);
-         var_dump($jsonUser);
-         die;
-
+         return $jsonUser;
       }
       else{
          var_dump("fail");
@@ -71,8 +69,7 @@ class IndexController
 
       if(isset($user)){
          $jsonUser = json_encode($user);
-         var_dump($jsonUser);
-         die;
+         return $jsonUser;
 
       }
       else{
@@ -84,6 +81,14 @@ class IndexController
    public function inscriptionAction(Request $request, Application $app){
       $parameters = $request->attributes->all();
       $insert = $app['repository.user']->inscription($parameters);
+      die;
+   }
+
+   public function magicCardAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      $response = file_get_contents('https://api.magicthegathering.io/v1/cards/' . $parameters['cardId']);
+      $response = json_decode($response);
+      var_dump($response);
       die;
    }
 
