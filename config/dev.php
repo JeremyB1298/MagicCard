@@ -10,9 +10,9 @@ $app['debug'] = true;
 // Doctrine (db)
 $app['db.options'] = array(
     'driver' => 'pdo_mysql',
-    'host' => 'sql7.freemysqlhosting.net',
+    'host' => 'localhost',
     'port' => '3306',
-    'dbname' => 'sql7261249',
-    'user' => 'sql7261249',
-    'password' => 'BIHvt7yXUk',
+    'dbname' => 'magiccard',
+    'user' => 'root',
+    'password' => 'root',
 );

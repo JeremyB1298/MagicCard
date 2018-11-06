@@ -47,25 +47,45 @@ class IndexController
    //       return $app['twig']->render('users.form.html.twig');
    //   }
 
-   //  public function addInscriptionAction(Request $request, Application $app){
+   public function fbConnexionAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      $user = $app['repository.user']->getUserByFbId( intval($parameters['fbId']) );
+      
+      if(isset($user)){
+         $jsonUser = json_encode($user);
+         var_dump($jsonUser);
+         die;
 
-   //      $parameters = $request->attributes->all();
+      }
+      else{
+         var_dump("fail");
+         die;
+      }
+      
+   }
 
-   //      var_dump($parameters);
-   //      die;
-        
-   //      $users=$app['repository.user']->inscriptionUser($parameters);
+   public function googleConnexionAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      $user = $app['repository.user']->getUserByGoogleId( intval($parameters['googleId']));
 
-   //      return null;
 
-   //  }
+      if(isset($user)){
+         $jsonUser = json_encode($user);
+         var_dump($jsonUser);
+         die;
 
-    public function isUserAction(Request $request, Application $app){
+      }
+      else{
+         var_dump("fail");
+         die;
+      }
+   }
 
-       if ($parameters['id']) {
-             $user = $app['repository.user']->getUser($parameters['id']);
-         } 
-
-    }
+   public function inscriptionAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      var_dump($parameters);
+      die;
+      $newUser = $app['repository.user']->inscription($parameters);
+   }
 
 }
