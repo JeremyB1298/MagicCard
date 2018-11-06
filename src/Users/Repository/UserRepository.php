@@ -224,6 +224,7 @@ class UserRepository
            ->setParameter(':name',$parameters['name'])
            ->setParameter(':email',$parameters['email']);
          $statement = $queryBuilder->execute();
+         return true;
     }
 
 

@@ -83,9 +83,8 @@ class IndexController
 
    public function inscriptionAction(Request $request, Application $app){
       $parameters = $request->attributes->all();
-      var_dump($parameters);
+      $insert = $app['repository.user']->inscription($parameters);
       die;
-      $newUser = $app['repository.user']->inscription($parameters);
    }
 
 }
