@@ -192,7 +192,6 @@ class UserRepository
            ->setParameter(0, $googleId);
        $statement = $queryBuilder->execute();
        $userData = $statement->fetchAll();
-
        if ( $userData != null ) {
           if ( $userData[0]['fbId'] != null) {
             //account with fbId and googleId

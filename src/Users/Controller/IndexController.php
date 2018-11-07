@@ -64,9 +64,7 @@ class IndexController
 
    public function googleConnexionAction(Request $request, Application $app){
       $parameters = $request->attributes->all();
-      $user = $app['repository.user']->getUserByGoogleId( intval($parameters['googleId']));
-
-
+      $user = $app['repository.user']->getUserByGoogleId($parameters['googleId']);
       if(isset($user)){
          $jsonUser = json_encode($user);
          return $jsonUser;
