@@ -16,3 +16,6 @@ $app->register(new TwigServiceProvider(), array(
 $app['repository.user'] = function ($app) {
     return new App\Users\Repository\UserRepository($app['db']);
 };
+$app['repository.card'] = function ($app) {
+    return new App\Users\Repository\CardRepository($app['db']);
+};
