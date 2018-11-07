@@ -2,7 +2,7 @@
 
 namespace App\Users\Entity;
 
-class Card
+class Card implements \JsonSerializable
 {
 	protected $id;
 
@@ -48,6 +48,10 @@ class Card
         $array['cardName'] = $this->cardName;
 
         return $array;
+    }
+        public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 
 }

@@ -2,11 +2,13 @@
 
 namespace App\Users\Entity;
 
-class User
+class User implements \JsonSerializable
 {
     protected $id;
 
-    protected $idu;
+    protected $fbId;
+
+    protected $googleId;
 
     protected $name;
 
@@ -14,18 +16,23 @@ class User
 
     protected $email;
 
-    public function __construct($id, $idu, $name, $email, $isNew)
+    public function __construct($id, $fbId, $googleId, $name, $email, $isNew)
     {
         $this->id = $id;
-        $this->idu = $idu;
+        $this->fbId = $fbId;
+        $this->googleId = $googleId;
         $this->name = $name;
         $this->email = $email;
         $this->isNew = $isNew;
     }
 
-    public function setIdu($idu)
+    public function setFbId($fbId)
     {
-        $this->idu = $idu;
+        $this->fbId = $fbId;
+    }
+
+    public function setGoogleId($googleId){
+        $this->googleId = $googleId;
     }
 
     public function setName($name)
@@ -52,9 +59,12 @@ class User
     {
         return $this->name;
     }
-    public function getIdu()
+    public function getFbId()
     {
-        return $this->idu;
+        return $this->fbId;
+    }
+    public function getGoogleId(){
+        return $this->googleId;
     }
     public function getEmail()
     {
@@ -69,11 +79,16 @@ class User
     {
         $array = array();
         $array['id'] = $this->id;
-        $array['idu'] = $this->idu;
+        $array['fbId'] = $this->fbId;
+        $array['googleId'] = $this->googleId;
         $array['name'] = $this->name;
         $array['email'] = $this->email;
         $array['isNew'] = $this->isNew;
 
         return $array;
+    }
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }

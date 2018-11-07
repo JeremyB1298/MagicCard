@@ -26,7 +26,7 @@ class CardRepository
             ->setParameter(0, $id);
         $statement = $queryBuilder->execute();
         $cardData = $statement->fetchAll();
-        return $cardData;
+        return new Card($cardData[0]['id'],$cardData[0]['cardId'], $cardData[0]['cardName']);
     }
 
     public function getCardByCardId($cardId){

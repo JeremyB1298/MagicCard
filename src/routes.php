@@ -1,7 +1,10 @@
 <?php
 
-//$app->post('/inscription','App\Users\Controller\IndexController::addInscriptionAction')->bind('users.addInscription');
-//$app->post('/isUser/{idu}','App\Users\Controller\IndexController::isUserAction')->bind('users.isUser');
+$app->get('/facebookConnexion/{fbId}','App\Users\Controller\IndexController::fbConnexionAction')->bind('users.fbConnexion');
+$app->get('/googleConnexion/{googleId}','App\Users\Controller\IndexController::googleConnexionAction')->bind('users.googleConnexion');
 
-$app->get('/users','App\Users\Controller\IndexController::getUsersAction')->bind('users.getusers');
+$app->post('/inscription/{fbId}/{googleId}/{name}/{email}','App\Users\Controller\IndexController::inscriptionAction')->bind('users.inscription');
+
+$app->get('/magicCardApi/{cardId}','App\Users\Controller\IndexController::magicCardAction')->bind('users.magicCard');
+//$app->get('/users','App\Users\Controller\IndexController::getUsersAction')->bind('users.getusers');
 $app->get('/userCards/{id}','App\Users\Controller\IndexController::getUserCardsAction')->bind('users.getusercards');

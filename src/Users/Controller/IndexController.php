@@ -47,26 +47,52 @@ class IndexController
    //       return $app['twig']->render('users.form.html.twig');
    //   }
 
-   //  public function addInscriptionAction(Request $request, Application $app){
+   public function fbConnexionAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      $user = $app['repository.user']->getUserByFbId( intval($parameters['fbId']) );
+      
+      if(isset($user)){
+         $jsonUser = json_encode($user);
+         return $jsonUser;
+      }
+      else{
+         var_dump("fail");
+         die;
+      }
+      
+   }
 
-   //      $parameters = $request->attributes->all();
+   public function googleConnexionAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      $user = $app['repository.user']->getUserByGoogleId( intval($parameters['googleId']));
 
-   //      var_dump($parameters);
-   //      die;
-        
-   //      $users=$app['repository.user']->inscriptionUser($parameters);
 
-   //      return null;
+      if(isset($user)){
+         $jsonUser = json_encode($user);
+         return $jsonUser;
 
-   //  }
+      }
+      else{
+         var_dump("fail");
+         die;
+      }
+   }
 
-    public function isUserAction(Request $request, Application $app){
+   public function inscriptionAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      $insert = $app['repository.user']->inscription($parameters);
+      die;
+   }
 
-       if ($parameters['id']) {
-             $user = $app['repository.user']->getUser($parameters['id']);
-         } 
+   public function magicCardAction(Request $request, Application $app){
+      $parameters = $request->attributes->all();
+      $response = file_get_contents("https://api.magicthegathering.io/v1/cards/44");
+      $response = json_decode($response);
+      var_dump($response);
+      die;
+   }
 
-    }
+    
     public function getUsersAction(Request $request, Application $app){
 
       $users = $app['repository.user']->getAll();
@@ -76,14 +102,14 @@ class IndexController
     public function getUserCardsAction(Request $request, Application $app){
        $parameters = $request->attributes->all();
       $cardsId=$app['repository.user']->getCardsByIdUser($parameters['id']);
-      $tabCards = array();
+      $tabCards = array(); 
       foreach ($cardsId as $cardId) {
          $card = $app['repository.card']->getCardById(intval($cardId['cardId']));
-         $card = $card[0];
-         array_push($tabCards, $card);
+         $itemCard = file_get_contents('https://api.magicthegathering.io/v1/cards/' . $card->getCardId());
+         $itemCard = json_decode($itemCard, true);
+         array_push($tabCards, $itemCard);
       }
-      return $app['twig']->render('users.tabCards.html.twig', array('tabCards' => $tabCards));
-      die;
+      return json_encode($tabCards);
     }
 
 }

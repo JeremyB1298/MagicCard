@@ -160,18 +160,75 @@ class UserRepository
 
     }
 
-    public function getAll(){
-
-       $queryBuilder = $this->db->createQueryBuilder();
+    public function getUserByFbId($fbId){
+      $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
-            ->select('u.*')
-            ->from('users', 'u');
+           ->select('u.*')
+           ->from('users', 'u')
+           ->where('fbId = ?')
+           ->setParameter(0, $fbId);
+       $statement = $queryBuilder->execute();
+       $userData = $statement->fetchAll();
 
-        $statement = $queryBuilder->execute();
-        $usersData = $statement->fetchAll();
-        var_dump($usersData);
-        die;
-}
+       if ( $userData != null ) {
+          if ( $userData[0]['googleId'] != null) {
+            //account with fbId and googleId
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+          }
+            //account with fbId but not with googleId
+         return new User($userData[0]['id'], $userData[0]['fbId'], -1, $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+       }
+       //No account with fbId
+       return null;
+       
+    }
+
+    public function getUserByGoogleId($googleId){
+      $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('u.*')
+           ->from('users', 'u')
+           ->where('googleId = ?')
+           ->setParameter(0, $googleId);
+       $statement = $queryBuilder->execute();
+       $userData = $statement->fetchAll();
+
+       if ( $userData != null ) {
+          if ( $userData[0]['fbId'] != null) {
+            //account with fbId and googleId
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+          }
+            //account with fbId but not with googleId
+         return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+       }
+       //No account with fbId
+       return null;
+       
+    }
+
+    public function inscription($parameters){
+      $queryBuilder = $this->db->createQueryBuilder();
+         $queryBuilder
+           ->insert('users')
+           ->values(
+               array(
+                 'googleId' => ':googleId',
+                 'fbId' => ':fbId',
+                 'name' => ':name',
+                 'isNew' => 1,
+                 'email' => ':email'
+               )
+           )
+           ->setParameter(':googleId', $parameters['googleId'])
+           ->setParameter(':fbId', $parameters['fbId'])
+           ->setParameter(':name',$parameters['name'])
+           ->setParameter(':email',$parameters['email']);
+         $statement = $queryBuilder->execute();
+         return true;
+    }
+
+
+
 
     public function getCardsByIdUser($id){
       $queryBuilder = $this->db->createQueryBuilder();
