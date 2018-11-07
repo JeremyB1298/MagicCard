@@ -2,56 +2,93 @@
 
 namespace App\Users\Entity;
 
-class User
+class User implements \JsonSerializable
 {
     protected $id;
 
-    protected $nom;
+    protected $fbId;
 
-    protected $prenom;
+    protected $googleId;
 
-    public function __construct($id, $nom, $prenom)
+    protected $name;
+
+    protected $isNew;
+
+    protected $email;
+
+    public function __construct($id, $fbId, $googleId, $name, $email, $isNew)
     {
         $this->id = $id;
-        $this->prenom = $prenom;
-        $this->nom = $nom;
+        $this->fbId = $fbId;
+        $this->googleId = $googleId;
+        $this->name = $name;
+        $this->email = $email;
+        $this->isNew = $isNew;
     }
 
-    public function setId($id)
+    public function setFbId($fbId)
     {
-        $this->id = $id;
+        $this->fbId = $fbId;
     }
 
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
+    public function setGoogleId($googleId){
+        $this->googleId = $googleId;
     }
 
-    public function setPrenom($prenom)
+    public function setName($name)
     {
-        $this->prenom = $prenom;
+        $this->name = $name;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setIsNew($isNew){
+
+        $this->isNew=$isNew;
+
     }
 
     public function getId()
     {
         return $this->id;
     }
-    public function getPrenom()
+    public function getName()
     {
-        return $this->prenom;
+        return $this->name;
     }
-    public function getNom()
+    public function getFbId()
     {
-        return $this->nom;
+        return $this->fbId;
+    }
+    public function getGoogleId(){
+        return $this->googleId;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function getIsNew()
+    {
+        return $this->isNew;
     }
 
     public function toArray()
     {
         $array = array();
         $array['id'] = $this->id;
-        $array['nom'] = $this->nom;
-        $array['prenom'] = $this->prenom;
+        $array['fbId'] = $this->fbId;
+        $array['googleId'] = $this->googleId;
+        $array['name'] = $this->name;
+        $array['email'] = $this->email;
+        $array['isNew'] = $this->isNew;
 
         return $array;
+    }
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-// $app->get('/users/list', 'App\Users\Controller\IndexController::listAction')->bind('users.list');
-// $app->get('/users/edit/{id}', 'App\Users\Controller\IndexController::editAction')->bind('users.edit');
-// $app->get('/users/new', 'App\Users\Controller\IndexController::newAction')->bind('users.new');
-// $app->post('/users/delete/{id}', 'App\Users\Controller\IndexController::deleteAction')->bind('users.delete');
-// $app->post('/users/save', 'App\Users\Controller\IndexController::saveAction')->bind('users.save');
+$app->get('/facebookConnexion/{fbId}','App\Users\Controller\IndexController::fbConnexionAction')->bind('users.fbConnexion');
+$app->get('/googleConnexion/{googleId}','App\Users\Controller\IndexController::googleConnexionAction')->bind('users.googleConnexion');
 
+$app->post('/inscription/{fbId}/{googleId}/{name}/{email}','App\Users\Controller\IndexController::inscriptionAction')->bind('users.inscription');
 
-$app->get('users/connexion', 'App\App\Users\Controller\ConnexionController::listAction')->bind('users.connexion');
+$app->get('/magicCardApi/{cardId}','App\Users\Controller\IndexController::magicCardAction')->bind('users.magicCard');
+//$app->get('/users','App\Users\Controller\IndexController::getUsersAction')->bind('users.getusers');
+$app->get('/userCards/{id}','App\Users\Controller\IndexController::getUserCardsAction')->bind('users.getusercards');
