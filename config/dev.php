@@ -11,5 +11,5 @@ $app['db.options'] = array(
    'port' => '3306',
    'dbname' => 'magiccard',
    'user' => 'root',
-   'password' => '',
+   'password' => 'root',
 );

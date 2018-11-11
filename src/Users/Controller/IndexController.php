@@ -49,7 +49,7 @@ class IndexController
 
    public function fbConnexionAction(Request $request, Application $app){
       $parameters = $request->attributes->all();
-      $user = $app['repository.user']->getUserByFbId( intval($parameters['fbId']) );
+      $user = $app['repository.user']->getUserByFbId( $parameters['fbId'] );
       
       if(isset($user)){
          $jsonUser = json_encode($user);
