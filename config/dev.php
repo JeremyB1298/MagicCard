@@ -6,10 +6,10 @@ ini_set('display_errors', 'On');
 $app['debug'] = true;
 // Doctrine (db)
 $app['db.options'] = array(
+   'dbname' => 'magiccard',
+   'port' => '3306',
+   'user' => 'root',
    'driver' => 'pdo_mysql',
    'host' => 'localhost',
-   'port' => '3306',
-   'dbname' => 'magiccard',
-   'user' => 'root',
-   'password' => 'root',
+    'password' => 'sCr7GD47x6',
 );
