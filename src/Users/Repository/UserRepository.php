@@ -121,9 +121,6 @@ class UserRepository
    //  }
 
     public function inscriptionUser($parameters){
-
-      
-
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
           ->insert('user')

@@ -77,7 +77,9 @@ class IndexController
    }
 
    public function inscriptionAction(Request $request, Application $app){
-      $parameters = $request->attributes->all();
+      $parameters = json_decode( $request->request->get("json"));
+      var_dump($parameters);
+      die;
       $insert = $app['repository.user']->inscription($parameters);
       die;
    }
