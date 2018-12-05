@@ -170,10 +170,10 @@ class UserRepository
        if ( $userData != null ) {
           if ( $userData[0]['googleId'] != null) {
             //account with fbId and googleId
-            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew']);
           }
             //account with fbId but not with googleId
-         return new User($userData[0]['id'], $userData[0]['fbId'], -1, $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+         return new User($userData[0]['id'], $userData[0]['fbId'], -1, $userData[0]['name'], $userData[0]['isNew']);
        }
        //No account with fbId
        return null;
@@ -192,10 +192,10 @@ class UserRepository
        if ( $userData != null ) {
           if ( $userData[0]['fbId'] != null) {
             //account with fbId and googleId
-            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew']);
           }
             //account with fbId but not with googleId
-         return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+         return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew']);
        }
        //No account with fbId
        return null;

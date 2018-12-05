@@ -14,15 +14,12 @@ class User implements \JsonSerializable
 
     protected $isNew;
 
-    protected $email;
-
-    public function __construct($id, $fbId, $googleId, $name, $email, $isNew)
+    public function __construct($id, $fbId, $googleId, $name, $isNew)
     {
         $this->id = $id;
         $this->fbId = $fbId;
         $this->googleId = $googleId;
         $this->name = $name;
-        $this->email = $email;
         $this->isNew = $isNew;
     }
 
@@ -38,11 +35,6 @@ class User implements \JsonSerializable
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
     }
 
     public function setIsNew($isNew){
@@ -66,10 +58,6 @@ class User implements \JsonSerializable
     public function getGoogleId(){
         return $this->googleId;
     }
-    public function getEmail()
-    {
-        return $this->email;
-    }
     public function getIsNew()
     {
         return $this->isNew;
@@ -83,7 +71,6 @@ class User implements \JsonSerializable
         $array['googleId'] = $this->googleId;
         $array['name'] = $this->name;
         $array['email'] = $this->email;
-        $array['isNew'] = $this->isNew;
 
         return $array;
     }
