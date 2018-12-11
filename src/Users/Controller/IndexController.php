@@ -77,10 +77,9 @@ class IndexController
    }
 
    public function inscriptionAction(Request $request, Application $app){
-      $parameters = json_decode( $request->request->get("json"));
+      $parameters = json_decode( $request->request->get("user"));
       var_dump($parameters);
-      die;
-      $insert = $app['repository.user']->inscription($parameters);
+      $insert = $app['repository.user']->inscriptionGoogle($parameters);
       die;
    }
 

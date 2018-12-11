@@ -202,23 +202,20 @@ class UserRepository
        
     }
 
-    public function inscription($parameters){
+    public function inscriptionGoogle($parameters){
       $queryBuilder = $this->db->createQueryBuilder();
          $queryBuilder
            ->insert('users')
            ->values(
                array(
                  'googleId' => ':googleId',
-                 'fbId' => ':fbId',
+                 'fbId' => -1,
                  'name' => ':name',
                  'isNew' => 1,
-                 'email' => ':email'
                )
            )
            ->setParameter(':googleId', $parameters['googleId'])
-           ->setParameter(':fbId', $parameters['fbId'])
            ->setParameter(':name',$parameters['name'])
-           ->setParameter(':email',$parameters['email']);
          $statement = $queryBuilder->execute();
          return true;
     }
