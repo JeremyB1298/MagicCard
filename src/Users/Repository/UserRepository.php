@@ -202,7 +202,7 @@ class UserRepository
        
     }
 
-    public function inscriptionGoogle($parameters){
+    public function inscriptionGoogle($parameters){ 
       $queryBuilder = $this->db->createQueryBuilder();
          $queryBuilder
            ->insert('users')
