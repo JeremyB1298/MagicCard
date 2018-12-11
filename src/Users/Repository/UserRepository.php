@@ -215,7 +215,7 @@ class UserRepository
                )
            )
            ->setParameter(':googleId', $parameters['googleId'])
-           ->setParameter(':name',$parameters['name'])
+           ->setParameter(':name',$parameters['name']);
          $statement = $queryBuilder->execute();
          return true;
     }
