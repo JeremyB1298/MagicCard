@@ -192,9 +192,11 @@ class UserRepository
        if ( $userData != null ) {
           if ( $userData[0]['fbId'] != null) {
             //account with fbId and googleId
+           
             return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
           }
             //account with fbId but not with googleId
+          
          return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
        }
        //No account with fbId

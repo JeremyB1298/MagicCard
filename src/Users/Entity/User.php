@@ -14,13 +14,19 @@ class User implements \JsonSerializable
 
     protected $isNew;
 
-    public function __construct($id, $fbId, $googleId, $name, $isNew)
+    protected $lvl;
+
+    protected $exp;
+
+    public function __construct($id, $fbId, $googleId, $name, $isNew, $lvl, $exp)
     {
         $this->id = $id;
         $this->fbId = $fbId;
         $this->googleId = $googleId;
         $this->name = $name;
         $this->isNew = $isNew;
+        $this->lvl = $lvl;
+        $this->exp = $exp;
     }
 
     public function setFbId($fbId)
