@@ -110,4 +110,11 @@ class IndexController
       return json_encode($tabCards);
     }
 
+    public function getShopCardsAction(Request $request, Application $app) {
+      $parameters = $request->attributes->all();
+      $nbrCard = intval($parameters['nbrCards']);
+      var_dump($nbrCard);
+      die;
+    }
+
 }

@@ -11,5 +11,5 @@ $app['db.options'] = array(
    'user' => 'root',
    'driver' => 'pdo_mysql',
    'host' => '127.0.0.1', 
-    'password' => 'sCr7GD47x6',
+    'password' => '', // sCr7GD47x6
 );
