@@ -121,9 +121,6 @@ class UserRepository
    //  }
 
     public function inscriptionUser($parameters){
-
-      
-
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
           ->insert('user')
@@ -173,10 +170,10 @@ class UserRepository
        if ( $userData != null ) {
           if ( $userData[0]['googleId'] != null) {
             //account with fbId and googleId
-            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
           }
             //account with fbId but not with googleId
-         return new User($userData[0]['id'], $userData[0]['fbId'], -1, $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+         return new User($userData[0]['id'], $userData[0]['fbId'], -1, $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
        }
        //No account with fbId
        return null;
@@ -195,33 +192,36 @@ class UserRepository
        if ( $userData != null ) {
           if ( $userData[0]['fbId'] != null) {
             //account with fbId and googleId
-            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+           
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
           }
             //account with fbId but not with googleId
-         return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['email'], $userData[0]['isNew']);
+          
+         return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
        }
        //No account with fbId
        return null;
        
     }
 
-    public function inscription($parameters){
+    public function inscriptionGoogle($parameters){ 
       $queryBuilder = $this->db->createQueryBuilder();
          $queryBuilder
            ->insert('users')
            ->values(
                array(
                  'googleId' => ':googleId',
-                 'fbId' => ':fbId',
+                 'fbId' => -1,
                  'name' => ':name',
                  'isNew' => 1,
-                 'email' => ':email'
+                 'lvl' => ':lvl',
+                 'exp'=> ':exp',
                )
            )
-           ->setParameter(':googleId', $parameters['googleId'])
-           ->setParameter(':fbId', $parameters['fbId'])
+           ->setParameter(':googleId', $parameters['googleid'])
            ->setParameter(':name',$parameters['name'])
-           ->setParameter(':email',$parameters['email']);
+           ->setParameter(':lvl',$parameters['lvl'])
+           ->setParameter(':exp',$parameters['exp']);
          $statement = $queryBuilder->execute();
          return true;
     }
