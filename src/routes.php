@@ -10,3 +10,5 @@ $app->get('/magicCardApi/{cardId}','App\Users\Controller\IndexController::magicC
 $app->get('/userCards/{id}','App\Users\Controller\IndexController::getUserCardsAction')->bind('users.getusercards');
 
 $app->get('/shop/{nbrCards}','App\Users\Controller\IndexController::getShopCardsAction')->bind('users.getshopcards');
+
+$app->get('/updateAccount','App\Users\Controller\IndexController::updateAccountAction')->bind('users.updateaccount');

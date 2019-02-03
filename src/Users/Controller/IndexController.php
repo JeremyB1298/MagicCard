@@ -113,8 +113,22 @@ class IndexController
     public function getShopCardsAction(Request $request, Application $app) {
       $parameters = $request->attributes->all();
       $nbrCard = intval($parameters['nbrCards']);
-      var_dump($nbrCard);
-      die;
+      $cardsId = array();
+      for ($i=0; $i < $nbrCard; $i++) { 
+         array_push($cardsId, rand(1, 100));
+      }
+      $cards = array();
+      foreach ($cardsId as $cardId) {
+         $itemCard = file_get_contents('https://api.magicthegathering.io/v1/cards/' . $cardId);
+         $itemCard = json_decode($itemCard, true);
+         array_push($cards, $itemCard);
+      }
+      return json_encode($cards);
     }
+
+    public function updateAccountAction(Request $request, Application $app){
+      $parameters = json_decode( $request->getContent(), true);
+      return json_encode($parameters);
+   }
 
 }
