@@ -214,14 +214,12 @@ class UserRepository
                  'fbId' => -1,
                  'name' => ':name',
                  'isNew' => 1,
-                 'lvl' => ':lvl',
-                 'exp'=> ':exp',
+                 'lvl' => 1,
+                 'exp'=> 0,
                )
            )
-           ->setParameter(':googleId', $parameters['googleid'])
-           ->setParameter(':name',$parameters['name'])
-           ->setParameter(':lvl',$parameters['lvl'])
-           ->setParameter(':exp',$parameters['exp']);
+           ->setParameter(':googleId', $parameters['googleId'])
+           ->setParameter(':name',$parameters['name']);
          $statement = $queryBuilder->execute();
          return true;
     }
