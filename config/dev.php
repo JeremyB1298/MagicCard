@@ -7,9 +7,9 @@ $app['debug'] = true;
 // Doctrine (db)
 $app['db.options'] = array(
    'dbname' => 'magiccard',
-   'port' => '3306',
-   'user' => 'root',
+   'port' => '3306', // ''
+   'user' => 'webmaster', //root
    'driver' => 'pdo_mysql',
    'host' => '127.0.0.1', 
-    'password' => '', // sCr7GD47x6
+    'password' => 'sCr7GD47x6',
 );
