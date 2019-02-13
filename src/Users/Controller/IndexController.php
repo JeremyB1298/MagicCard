@@ -56,7 +56,6 @@ class IndexController
          return $jsonUser;
       }
       else{
-         var_dump("fail");
          die;
       }
       
@@ -71,7 +70,6 @@ class IndexController
 
       }
       else{
-         var_dump("fail");
          die;
       }
    }
@@ -79,7 +77,7 @@ class IndexController
    public function inscriptionAction(Request $request, Application $app){
       $parameters = json_decode( $request->getContent(), true);
       $insert = $app['repository.user']->inscriptionGoogle($parameters);
-      die;
+      return "OK";
    }
 
    public function magicCardAction(Request $request, Application $app){
