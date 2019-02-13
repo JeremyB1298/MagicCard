@@ -49,7 +49,7 @@ class IndexController
 
    public function fbConnexionAction(Request $request, Application $app){
       $parameters = $request->attributes->all();
-      $user = $app['repository.user']->getUserByFbId( intval($parameters['fbId']) );
+      $user = $app['repository.user']->getUserByFbId( $parameters['fbId'] );
       
       if(isset($user)){
          $jsonUser = json_encode($user);
@@ -77,8 +77,8 @@ class IndexController
    }
 
    public function inscriptionAction(Request $request, Application $app){
-      $parameters = $request->attributes->all();
-      $insert = $app['repository.user']->inscription($parameters);
+      $parameters = json_decode( $request->getContent(), true);
+      $insert = $app['repository.user']->inscriptionGoogle($parameters);
       die;
    }
 
