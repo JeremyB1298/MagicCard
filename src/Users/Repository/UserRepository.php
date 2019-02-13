@@ -224,14 +224,11 @@ class UserRepository
          return true;
     }
 
-
-
-
     public function getCardsByIdUser($id){
       $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-            ->select('uc.*')
-            ->from('usercards', 'uc')
+            ->select('c.*')
+            ->from('card', 'c')
             ->where('userId = ?')
             ->setParameter(0, $id);
         $statement = $queryBuilder->execute();

@@ -80,6 +80,18 @@ class IndexController
       return "OK";
    }
 
+   public function addCardAction(Request $request, Application $app){
+      $parameters = json_decode( $request->getContent(), true);
+      $insert = $app['repository.card']->addCard($parameters);
+      return "OK";
+   }
+
+   public function addUserCardAction(Request $request, Application $app){
+      $parameters = json_decode( $request->getContent(), true);
+      $insert = $app['repository.card']->addUserCard($parameters);
+      return "OK";
+   }
+
    public function magicCardAction(Request $request, Application $app){
       $parameters = $request->attributes->all();
       $response = file_get_contents("https://api.magicthegathering.io/v1/cards/44");
@@ -87,7 +99,17 @@ class IndexController
       var_dump($response);
       die;
    }
+ 
+   public function randomCardAction(Request $request, Application $app){
 
+      $tabCards = array(); 
+      for($i = 0; $i < 4; $i++ ) {
+         $itemCard = file_get_contents('https://api.scryfall.com/cards/random?q=lang%3Dfr');
+         $itemCard = json_decode($itemCard, true);
+         array_push($tabCards, $itemCard);
+      }
+      return json_encode($tabCards);
+    }
     
     public function getUsersAction(Request $request, Application $app){
 
@@ -100,7 +122,7 @@ class IndexController
       $cardsId=$app['repository.user']->getCardsByIdUser($parameters['id']);
       $tabCards = array(); 
       foreach ($cardsId as $cardId) {
-         $card = $app['repository.card']->getCardById(intval($cardId['cardId']));
+         $card = $app['repository.card']->getCardById($cardId['cardId']);
          $itemCard = file_get_contents('https://api.scryfall.com/cards/' . $card->getCardId());
          $itemCard = json_decode($itemCard, true);
          array_push($tabCards, $itemCard);
