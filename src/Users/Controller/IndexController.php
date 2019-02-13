@@ -101,7 +101,7 @@ class IndexController
       $tabCards = array(); 
       foreach ($cardsId as $cardId) {
          $card = $app['repository.card']->getCardById(intval($cardId['cardId']));
-         $itemCard = file_get_contents('https://api.magicthegathering.io/v1/cards/' . $card->getCardId());
+         $itemCard = file_get_contents('https://api.scryfall.com/cards/' . $card->getCardId());
          $itemCard = json_decode($itemCard, true);
          array_push($tabCards, $itemCard);
       }
