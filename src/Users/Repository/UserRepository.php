@@ -193,11 +193,11 @@ class UserRepository
           if ( $userData[0]['fbId'] != null) {
             //account with fbId and googleId
            
-            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp'], $userData[0]['money']);
           }
             //account with fbId but not with googleId
           
-         return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
+         return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp'], $userData[0]['money']);
        }
        //No account with fbId
        return null;
@@ -216,6 +216,7 @@ class UserRepository
                  'isNew' => 1,
                  'lvl' => 1,
                  'exp'=> 0,
+                 'money' => 500,
                )
            )
            ->setParameter(':googleId', $parameters['googleId'])
