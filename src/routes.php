@@ -3,7 +3,9 @@
 $app->get('/facebookConnexion/{fbId}','App\Users\Controller\IndexController::fbConnexionAction')->bind('users.fbConnexion');
 $app->get('/googleConnexion/{googleId}','App\Users\Controller\IndexController::googleConnexionAction')->bind('users.googleConnexion');
 
-$app->post('/inscription','App\Users\Controller\IndexController::inscriptionAction')->bind('users.inscription');
+$app->post('/inscriptionGoogle','App\Users\Controller\IndexController::inscriptionGoogleAction')->bind('users.inscriptionGoogle');
+
+$app->post('/inscriptionFacebook','App\Users\Controller\IndexController::inscriptionFacebookAction')->bind('users.inscriptionFacebook');
 
 $app->get('/magicCardApi/{cardId}','App\Users\Controller\IndexController::magicCardAction')->bind('users.magicCard');
 //$app->get('/users','App\Users\Controller\IndexController::getUsersAction')->bind('users.getusers');

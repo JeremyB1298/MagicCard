@@ -74,9 +74,15 @@ class IndexController
       }
    }
 
-   public function inscriptionAction(Request $request, Application $app){
+   public function inscriptionGoogleAction(Request $request, Application $app){
       $parameters = json_decode( $request->getContent(), true);
       $insert = $app['repository.user']->inscriptionGoogle($parameters);
+      return "OK";
+   }
+
+   public function inscriptionFacebookAction(Request $request, Application $app){
+      $parameters = json_decode( $request->getContent(), true);
+      $insert = $app['repository.user']->inscriptionFacebook($parameters);
       return "OK";
    }
 
