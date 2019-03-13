@@ -170,13 +170,13 @@ class UserRepository
        if ( $userData != null ) {
           if ( $userData[0]['googleId'] != null) {
             //account with fbId and googleId
-            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
+            return new User($userData[0]['id'], $userData[0]['fbId'], $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp'], $userData[0]['money']);
           }
             //account with fbId but not with googleId
-         return new User($userData[0]['id'], $userData[0]['fbId'], -1, $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp']);
+         return new User($userData[0]['id'], $userData[0]['fbId'], -1, $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp'], $userData[0]['money']);
        }
        //No account with fbId
-       return null;
+       return new User(-1,"","","",true,1,1,1);
        
     }
 
@@ -200,7 +200,7 @@ class UserRepository
          return new User($userData[0]['id'], -1, $userData[0]['googleId'], $userData[0]['name'], $userData[0]['isNew'], $userData[0]['lvl'], $userData[0]['exp'], $userData[0]['money']);
        }
        //No account with fbId
-       return null;
+       return new User(-1,"","","",true,1,1,1);
        
     }
 
@@ -220,6 +220,27 @@ class UserRepository
                )
            )
            ->setParameter(':googleId', $parameters['googleId'])
+           ->setParameter(':name',$parameters['name']);
+         $statement = $queryBuilder->execute();
+         return true;
+    }
+
+    public function inscriptionFacebook($parameters){ 
+      $queryBuilder = $this->db->createQueryBuilder();
+         $queryBuilder
+           ->insert('users')
+           ->values(
+               array(
+                 'googleId' => -1,
+                 'fbId' => ':fbId',
+                 'name' => ':name',
+                 'isNew' => 1,
+                 'lvl' => 1,
+                 'exp'=> 0,
+                 'money' => 500,
+               )
+           )
+           ->setParameter(':fbId', $parameters['fbId'])
            ->setParameter(':name',$parameters['name']);
          $statement = $queryBuilder->execute();
          return true;
