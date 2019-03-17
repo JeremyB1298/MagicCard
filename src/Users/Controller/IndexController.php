@@ -109,7 +109,7 @@ class IndexController
    public function randomCardAction(Request $request, Application $app){
 
       $tabCards = array(); 
-      for($i = 0; $i < 4; $i++ ) {
+      for($i = 0; $i < 39; $i++ ) {
          $itemCard = file_get_contents('https://api.scryfall.com/cards/random?q=lang%3Dfr');
          $itemCard = json_decode($itemCard, true);
          array_push($tabCards, $itemCard);
