@@ -3,6 +3,7 @@
 namespace App\Users\Controller;
 
 use Silex\Application;
+use App\Users\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 
 class IndexController
@@ -154,7 +155,8 @@ class IndexController
 
     public function updateAccountAction(Request $request, Application $app){
       $parameters = json_decode( $request->getContent(), true);
-      return json_encode($parameters);
+      $app['repository.user']->updateAccount( $parameters );
+      return "OK";
    }
 
 }

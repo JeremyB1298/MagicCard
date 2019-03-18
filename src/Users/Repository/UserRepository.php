@@ -257,4 +257,31 @@ class UserRepository
         $userCardsData = $statement->fetchAll();
         return $userCardsData;
     }
+
+        public function updateAccount($user)
+    {
+
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+          ->update('users')
+          ->where('id = :id')
+          ->set('fbId',':fbId')
+          ->set('googleId',':googleId')
+          ->set('name',':name')
+          ->set('isNew',':isNew')
+          ->set('lvl',':lvl')
+          ->set('exp',':exp')
+          ->set('money',':money')
+          ->setParameter(':id', $user['id'])
+          ->setParameter(':fbId', $user['fbId'])
+          ->setParameter(':googleId', $user['googleId'])
+          ->setParameter(':name', $user['name'])
+          ->setParameter(':isNew', $user['isNew'])
+          ->setParameter(':lvl', $user['lvl'])
+          ->setParameter(':exp', $user['exp'])
+          ->setParameter(':money', $user['money']);
+
+        $statement = $queryBuilder->execute();
+    }
+
 }
