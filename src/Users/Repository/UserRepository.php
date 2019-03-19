@@ -216,7 +216,7 @@ class UserRepository
                  'isNew' => 1,
                  'lvl' => 1,
                  'exp'=> 0,
-                 'money' => 500,
+                 'money' => 5000,
                )
            )
            ->setParameter(':googleId', $parameters['googleId'])
@@ -237,7 +237,7 @@ class UserRepository
                  'isNew' => 1,
                  'lvl' => 1,
                  'exp'=> 0,
-                 'money' => 500,
+                 'money' => 5000,
                )
            )
            ->setParameter(':fbId', $parameters['fbId'])
