@@ -6,7 +6,7 @@ use App\Users\Entity\Card;
 use Doctrine\DBAL\Connection;
 
 /**
- * User repository.
+ * Card repository.
  */
 class CardRepository
 {
@@ -39,6 +39,18 @@ class CardRepository
         $statement = $queryBuilder->execute();
         $cardData = $statement->fetchAll();
         die;
+    }
+
+    public function getCardsIdByIdDeck($deckId){
+      $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('d.cardId')
+            ->from('deck', 'd')
+            ->where('deckId = ?')
+            ->setParameter(0,$deckId);
+        $statement = $queryBuilder->execute();
+        $cardsIdData = $statement->fetchAll();
+        return $cardsIdData;
     }
 
     public function addCard($parameters){ 

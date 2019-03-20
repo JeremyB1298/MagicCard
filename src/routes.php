@@ -11,6 +11,8 @@ $app->get('/magicCardApi/{cardId}','App\Users\Controller\IndexController::magicC
 //$app->get('/users','App\Users\Controller\IndexController::getUsersAction')->bind('users.getusers');
 $app->get('/userCards/{id}','App\Users\Controller\IndexController::getUserCardsAction')->bind('users.getusercards');
 
+$app->get('/userDeck/{id}','App\Users\Controller\IndexController::getUserDeckAction')->bind('users.getuserdeck');
+
 $app->get('/shop/{nbrCards}','App\Users\Controller\IndexController::getShopCardsAction')->bind('users.getshopcards');
 
 $app->get('/randomCard','App\Users\Controller\IndexController::randomCardAction')->bind('users.randomCard');
@@ -20,3 +22,5 @@ $app->post('/addCard','App\Users\Controller\IndexController::addCardAction')->bi
 $app->post('/updateAccount','App\Users\Controller\IndexController::updateAccountAction')->bind('users.updateaccount');
 
 $app->post('/addUserCard','App\Users\Controller\IndexController::addUserCardAction')->bind('users.addusercard');
+
+$app->post('/addDeck','App\Users\Controller\IndexController::addDeckAction')->bind('users.adddeck');

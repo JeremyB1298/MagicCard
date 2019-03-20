@@ -159,4 +159,33 @@ class IndexController
       return "OK";
    }
 
+   public function addDeckAction(Request $request, Application $app) {
+      $parameters = json_decode( $request->getContent(), true);
+      foreach ($parameters as $key ) {
+         $app['repository.deck']->addDeck($key);
+      }
+      
+      die;
+   }
+
+   public function getUserDeckAction(Request $request, Application $app) {
+      $parameters = $request->attributes->all();
+      $decksId = $app['repository.user']->getDecksIdByIdUser($parameters['id']);
+      //$tabDecks = arrray();
+      //var_dump($decksId);
+      //echo "<br>";
+      //echo "<br>";
+      foreach ($decksId as $id) {
+         //var_dump($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])));
+         //die;
+         foreach ($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])) as $key  ) {
+            var_dump($key['cardId']);
+            echo "<br>";
+         }
+         die;
+      }
+      
+      die;
+   }
+
 }
