@@ -171,21 +171,21 @@ class IndexController
    public function getUserDeckAction(Request $request, Application $app) {
       $parameters = $request->attributes->all();
       $decksId = $app['repository.user']->getDecksIdByIdUser($parameters['id']);
-      //$tabDecks = arrray();
+      $tabDecks = array();
       //var_dump($decksId);
       //echo "<br>";
-      //echo "<br>";
+      $tabCardsId = array();
       foreach ($decksId as $id) {
          //var_dump($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])));
          //die;
          foreach ($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])) as $key  ) {
-            var_dump($key['cardId']);
-            echo "<br>";
+            array_push($tabCardsId, $key['cardId']);
          }
-         die;
+         array_push($tabDecks, $tabCardsId);
+         $tabCardsId = array();
       }
-      
-      die;
+      var_dump($tabDecks);
+      return json_encode($tabCardsId);
    }
 
 }
