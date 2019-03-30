@@ -23,16 +23,40 @@ class DeckRepository
              ->insert('deck')
              ->values(
                  array(
-                   'cardId' => ':cardId',
-                   'deckId' => ':deckId',
+                   'name' => ':name',
                    'userId' => ':userId',
                  )
              )
-             ->setParameter(':cardId', $parameters['cardId'])
-             ->setParameter(':deckId',$parameters['deckId'])
-             ->setParameter(':userId', $parameters['userId']);
+             ->setParameter(':name', $parameters['name'])
+             ->setParameter(':userId',$parameters['userId']);
            $statement = $queryBuilder->execute();
            return true;
       }
+
+    public function updateDeck($parameters){ 
+               $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+          ->update('deck')
+          ->where('id = :id')
+          ->set('name',':name')
+          ->set('userId',':userId')
+          ->setParameter(':id', $parameters['id'])
+          ->setParameter(':name', $parameters['name'])
+          ->setParameter(':userId',$parameters['userId']);
+
+        $statement = $queryBuilder->execute();
+      }
+
+        public function getDecksIdByIdUser($id){
+      $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('DISTINCT d.id')
+            ->from('deck', 'd')
+            ->where('userId = ?')
+            ->setParameter(0, $id);
+        $statement = $queryBuilder->execute();
+        $userDecksData = $statement->fetchAll();
+        return $userDecksData;
+    }
 
 }

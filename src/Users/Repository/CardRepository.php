@@ -41,18 +41,6 @@ class CardRepository
         die;
     }
 
-    public function getCardsIdByIdDeck($deckId){
-      $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder
-            ->select('d.cardId')
-            ->from('deck', 'd')
-            ->where('deckId = ?')
-            ->setParameter(0,$deckId);
-        $statement = $queryBuilder->execute();
-        $cardsIdData = $statement->fetchAll();
-        return $cardsIdData;
-    }
-
     public function addCard($parameters){ 
         $queryBuilder = $this->db->createQueryBuilder();
            $queryBuilder

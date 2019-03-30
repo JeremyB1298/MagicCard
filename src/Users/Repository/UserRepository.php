@@ -258,18 +258,6 @@ class UserRepository
         return $userCardsData;
     }
 
-    public function getDecksIdByIdUser($id){
-      $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder
-            ->select('DISTINCT d.deckId')
-            ->from('deck', 'd')
-            ->where('userId = ?')
-            ->setParameter(0, $id);
-        $statement = $queryBuilder->execute();
-        $userDecksData = $statement->fetchAll();
-        return $userDecksData;
-    }
-
         public function updateAccount($user)
     {
 

@@ -159,18 +159,43 @@ class IndexController
       return "OK";
    }
 
-   public function addDeckAction(Request $request, Application $app) {
+/*   public function addCardDeckAction(Request $request, Application $app) {
       $parameters = json_decode( $request->getContent(), true);
       foreach ($parameters as $key ) {
-         $app['repository.deck']->addDeck($key);
+         $app['repository.carddeck']->addCardDeck($key);
       }
       
+      die;
+   }*/
+
+   public function addDeckAction(Request $request, Application $app) {
+      $parameters = json_decode( $request->getContent(), true);
+
+      foreach ($parameters as $key ) {
+         $app['repository.deck']->addDeck($key);
+         $tab = $key['tab'];
+         foreach ($tab as $key ) {
+         $app['repository.carddeck']->addCardDeck($key);
+      }
+      }
+      die;
+   }
+
+   public function updateDeckAction(Request $request, Application $app) {
+      $parameters = json_decode( $request->getContent(), true);
+      foreach ($parameters as $key ) {
+         $app['repository.deck']->updateDeck($key);
+         /*$tab = $key['tab'];
+         foreach ($tab as $key ) {
+         $app['repository.carddeck']->updateCardDeck($key);
+         }*/
+      }
       die;
    }
 
    public function getUserDeckAction(Request $request, Application $app) {
       $parameters = $request->attributes->all();
-      $decksId = $app['repository.user']->getDecksIdByIdUser($parameters['id']);
+      $decksId = $app['repository.deck']->getDecksIdByIdUser($parameters['id']);
       $tabDecks = array();
       //var_dump($decksId);
       //echo "<br>";
@@ -178,7 +203,7 @@ class IndexController
       foreach ($decksId as $id) {
          //var_dump($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])));
          //die;
-         foreach ($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])) as $key  ) {
+         foreach ($app['repository.carddeck']->getCardsIdByIdDeck(intval($id['id'])) as $key  ) {
             array_push($tabCardsId, $key['cardId']);
          }
          array_push($tabDecks, $tabCardsId);
