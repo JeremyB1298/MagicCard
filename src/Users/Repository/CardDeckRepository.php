@@ -32,10 +32,10 @@ class CardDeckRepository
            $statement = $queryBuilder->execute();
            return true;
       }
-    public function getCardsIdByIdDeck($deckId){
+    public function getCardsByIdDeck($deckId){
       $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-            ->select('d.cardId')
+            ->select('*')
             ->from('carddeck', 'd')
             ->where('deckId = ?')
             ->setParameter(0,$deckId);
@@ -43,4 +43,16 @@ class CardDeckRepository
         $cardsIdData = $statement->fetchAll();
         return $cardsIdData;
     }
+
+    public function deleteCardsOfDeck($cardDeckId)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+          ->delete('carddeck')
+          ->where('id = :id')
+          ->setParameter(':id', $cardDeckId);
+
+        $statement = $queryBuilder->execute();
+    }
+
 }

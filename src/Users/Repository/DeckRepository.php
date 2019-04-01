@@ -59,4 +59,17 @@ class DeckRepository
         return $userDecksData;
     }
 
+     public function getDeckIdByIdUserAndName($parameters){
+      $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('DISTINCT d.id')
+            ->from('deck', 'd')
+            ->where('userId = ? AND name = ?')
+            ->setParameter(0, $parameters['userId'])
+            ->setParameter(1, $parameters['name']);
+        $statement = $queryBuilder->execute();
+        $userDeckData = $statement->fetchAll();
+        return $userDeckData;
+    }
+
 }

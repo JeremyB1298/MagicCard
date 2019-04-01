@@ -173,10 +173,13 @@ class IndexController
 
       foreach ($parameters as $key ) {
          $app['repository.deck']->addDeck($key);
-         $tab = $key['tab'];
+         $tab = $key['cards'];
+         $deckId = $app['repository.deck']->getDeckIdByIdUserAndName($key);
+
          foreach ($tab as $key ) {
-         $app['repository.carddeck']->addCardDeck($key);
-      }
+            $key['deckId'] = intval($deckId[0]['id']);
+            $app['repository.carddeck']->addCardDeck($key);
+         }
       }
       die;
    }
@@ -185,10 +188,15 @@ class IndexController
       $parameters = json_decode( $request->getContent(), true);
       foreach ($parameters as $key ) {
          $app['repository.deck']->updateDeck($key);
-         /*$tab = $key['tab'];
-         foreach ($tab as $key ) {
-         $app['repository.carddeck']->updateCardDeck($key);
-         }*/
+         $newTab = $key['cards'];
+         $tabCards = $app['repository.carddeck']->getCardsByIdDeck($key['id']);
+         foreach ($tabCards as $card ) {
+            $app['repository.carddeck']->deleteCardsOfDeck(intval($card['id']));
+
+         }
+         foreach ($newTab as $card) {
+            $app['repository.carddeck']->addCardDeck($card);
+         }
       }
       die;
    }
@@ -203,8 +211,8 @@ class IndexController
       foreach ($decksId as $id) {
          //var_dump($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])));
          //die;
-         foreach ($app['repository.carddeck']->getCardsIdByIdDeck(intval($id['id'])) as $key  ) {
-            array_push($tabCardsId, $key['cardId']);
+         foreach ($app['repository.carddeck']->getCardsByIdDeck(intval($id['id'])) as $key  ) {
+            array_push($tabCardsId, $key);
          }
          array_push($tabDecks, $tabCardsId);
          $tabCardsId = array();
