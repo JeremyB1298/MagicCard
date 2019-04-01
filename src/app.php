@@ -19,3 +19,10 @@ $app['repository.user'] = function ($app) {
 $app['repository.card'] = function ($app) {
     return new App\Users\Repository\CardRepository($app['db']);
 };
+
+$app['repository.carddeck'] = function ($app) {
+    return new App\Users\Repository\CardDeckRepository($app['db']);
+};
+$app['repository.deck'] = function ($app) {
+    return new App\Users\Repository\DeckRepository($app['db']);
+};

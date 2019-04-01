@@ -6,7 +6,7 @@ use App\Users\Entity\Card;
 use Doctrine\DBAL\Connection;
 
 /**
- * User repository.
+ * Card repository.
  */
 class CardRepository
 {

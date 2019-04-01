@@ -10,6 +10,6 @@ $app['db.options'] = array(
    'port' => '3306', // ''
    'user' => 'webmaster', //root
    'driver' => 'pdo_mysql',
-   'host' => '127.0.0.1', 
+   'host' => '17ruecroixberthet.freeboxos.fr', 
     'password' => 'sCr7GD47x6',
 );

@@ -20,3 +20,11 @@ $app->post('/addCard','App\Users\Controller\IndexController::addCardAction')->bi
 $app->post('/updateAccount','App\Users\Controller\IndexController::updateAccountAction')->bind('users.updateaccount');
 
 $app->post('/addUserCard','App\Users\Controller\IndexController::addUserCardAction')->bind('users.addusercard');
+
+/*$app->post('/addCardDeck','App\Users\Controller\IndexController::addCardDeckAction')->bind('users.addcarddeck');*/
+
+$app->post('/addDeck','App\Users\Controller\IndexController::addDeckAction')->bind('users.adddeck');
+
+$app->post('/updateDeck','App\Users\Controller\IndexController::updateDeckAction')->bind('users.updatedeck');
+
+$app->get('/userDeck/{id}','App\Users\Controller\IndexController::getUserDeckAction')->bind('users.getuserdeck');
