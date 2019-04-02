@@ -212,13 +212,17 @@ class IndexController
          //var_dump($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])));
          //die;
          foreach ($app['repository.carddeck']->getCardsByIdDeck(intval($id['id'])) as $key  ) {
+            
             array_push($tabCardsId, $key);
          }
+         $tabCardsId[0]['id'] = intval($tabCardsId[0]['id']);
+         $tabCardsId[0]['cardId'] = intval($tabCardsId[0]['cardId']);
+         $tabCardsId[0]['deckId'] = intval($tabCardsId[0]['deckId']);
          array_push($tabDecks, $tabCardsId);
          $tabCardsId = array();
       }
-      var_dump($tabDecks);
-      return json_encode($tabCardsId);
+      //var_dump($tabDecks);
+      return json_encode($tabDecks);
    }
 
 }
