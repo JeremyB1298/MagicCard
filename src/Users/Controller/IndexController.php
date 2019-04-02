@@ -216,7 +216,6 @@ class IndexController
             array_push($tabCardsId, $key);
          }
          $tabCardsId[0]['id'] = intval($tabCardsId[0]['id']);
-         $tabCardsId[0]['cardId'] = intval($tabCardsId[0]['cardId']);
          $tabCardsId[0]['deckId'] = intval($tabCardsId[0]['deckId']);
          array_push($tabDecks, $tabCardsId);
          $tabCardsId = array();
