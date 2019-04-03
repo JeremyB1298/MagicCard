@@ -181,7 +181,7 @@ class IndexController
             $app['repository.carddeck']->addCardDeck($key);
          }
       }
-      die;
+      return "OK";
    }
 
    public function updateDeckAction(Request $request, Application $app) {
