@@ -170,7 +170,8 @@ class IndexController
 
    public function addDeckAction(Request $request, Application $app) {
       $parameters = json_decode( $request->getContent(), true);
-
+      var_dump($parameters);
+      echo "<br>";
       foreach ($parameters as $key ) {
          $app['repository.deck']->addDeck($key);
          $tab = $key['cards'];
