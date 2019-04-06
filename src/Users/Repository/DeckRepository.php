@@ -50,7 +50,7 @@ class DeckRepository
         public function getDecksIdByIdUser($id){
       $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-            ->select('DISTINCT d.id')
+            ->select('*')
             ->from('deck', 'd')
             ->where('userId = ?')
             ->setParameter(0, $id);
