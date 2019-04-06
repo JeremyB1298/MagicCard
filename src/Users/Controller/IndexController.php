@@ -222,8 +222,7 @@ class IndexController
          array_push($tabDecks, $deck);
          $tabCardsId = array();
       }
-      var_dump($tabDecks);
-      die;
+
 
       return json_encode($tabDecks);
    }
