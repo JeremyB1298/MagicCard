@@ -205,6 +205,7 @@ class IndexController
       $decks = $app['repository.deck']->getDecksIdByIdUser($parameters['id']);
       $tabDecks = array();
       $tabCardsId = array();
+
       foreach ($decks as $deck) {
          //var_dump($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])));
          //die;
@@ -212,8 +213,11 @@ class IndexController
             
             array_push($tabCardsId, $key);
          }
-         $tabCardsId[0]['id'] = intval($tabCardsId[0]['id']);
-         $tabCardsId[0]['deckId'] = intval($tabCardsId[0]['deckId']);
+         if (count($tabCardsId) >0) {
+            $tabCardsId[0]['id'] = intval($tabCardsId[0]['id']);
+            $tabCardsId[0]['deckId'] = intval($tabCardsId[0]['deckId']);
+         }
+        
          $deck['cards']= $tabCardsId;
          array_push($tabDecks, $deck);
          $tabCardsId = array();
