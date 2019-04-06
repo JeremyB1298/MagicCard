@@ -8,8 +8,8 @@ $app['debug'] = true;
 $app['db.options'] = array(
    'dbname' => 'magiccard',
    'port' => '3306', // ''
-   'user' => 'root', //root
+   'user' => 'webmaster', //root
    'driver' => 'pdo_mysql',
-   'host' => 'localhost', 
-    'password' => '',
+   'host' => '127.0.0.1', 
+    'password' => 'sCr7GD47x6',
 );
