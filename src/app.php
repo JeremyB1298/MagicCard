@@ -26,3 +26,6 @@ $app['repository.carddeck'] = function ($app) {
 $app['repository.deck'] = function ($app) {
     return new App\Users\Repository\DeckRepository($app['db']);
 };
+$app['repository.friend'] = function ($app) {
+    return new App\Users\Repository\FriendRepository($app['db']);
+};
