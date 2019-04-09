@@ -72,4 +72,14 @@ class DeckRepository
         return $userDeckData;
     }
 
+        public function deleteDeckById($deckId)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+          ->delete('deck')
+          ->where('id = :id')
+          ->setParameter(':id', $deckId);
+
+        $statement = $queryBuilder->execute();
+    }
 }

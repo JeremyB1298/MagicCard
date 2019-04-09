@@ -55,4 +55,15 @@ class CardDeckRepository
         $statement = $queryBuilder->execute();
     }
 
+        public function deleteCardsOfDeckByIdDeck($cardDeckId)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+          ->delete('carddeck')
+          ->where('deckId = :deckId')
+          ->setParameter(':deckId', $cardDeckId);
+
+        $statement = $queryBuilder->execute();
+    }
+
 }
