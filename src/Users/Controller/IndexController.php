@@ -233,6 +233,6 @@ public function DeleteDecksAction(Request $request, Application $app) {
 
    $app['repository.carddeck']->deleteCardsOfDeckByIdDeck(intval($parameters['id']));
    $app['repository.deck']->deleteDeckById(intval($parameters['id']));
-   die;
+   return "OK";
 }
 }
