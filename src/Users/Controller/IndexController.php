@@ -227,4 +227,12 @@ class IndexController
       return json_encode($tabDecks);
    }
 
+   
+public function DeleteDecksAction(Request $request, Application $app) {
+   $parameters = $request->attributes->all();
+
+   $app['repository.carddeck']->deleteCardsOfDeckByIdDeck(intval($parameters['id']));
+   $app['repository.deck']->deleteDeckById(intval($parameters['id']));
+   die;
+}
 }
