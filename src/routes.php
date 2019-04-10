@@ -28,3 +28,7 @@ $app->post('/addDeck','App\Users\Controller\IndexController::addDeckAction')->bi
 $app->post('/updateDeck','App\Users\Controller\IndexController::updateDeckAction')->bind('users.updatedeck');
 
 $app->get('/userDeck/{id}','App\Users\Controller\IndexController::getUserDeckAction')->bind('users.getuserdeck');
+
+$app->get('/deleteDecks/{id}','App\Users\Controller\IndexController::DeleteDecksAction')->bind('users.deletedecks');
+
+$app->get('/deleteDeck/{name}','App\Users\Controller\IndexController::DeleteDeckByNameAction')->bind('users.deletedecksbyname');

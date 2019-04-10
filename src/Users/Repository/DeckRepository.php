@@ -50,7 +50,7 @@ class DeckRepository
         public function getDecksIdByIdUser($id){
       $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-            ->select('DISTINCT d.id')
+            ->select('*')
             ->from('deck', 'd')
             ->where('userId = ?')
             ->setParameter(0, $id);
@@ -70,6 +70,29 @@ class DeckRepository
         $statement = $queryBuilder->execute();
         $userDeckData = $statement->fetchAll();
         return $userDeckData;
+    }
+
+        public function deleteDeckById($deckId)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+          ->delete('deck')
+          ->where('id = :id')
+          ->setParameter(':id', $deckId);
+
+        $statement = $queryBuilder->execute();
+    }
+
+    public function getDeckByName($name) {
+      $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('*')
+            ->from('deck', 'd')
+            ->where(' name = ?')
+            ->setParameter(0, $name);
+        $statement = $queryBuilder->execute();
+        $userDeckData = $statement->fetchAll();
+        return $userDeckData[0];
     }
 
 }

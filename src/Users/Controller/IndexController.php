@@ -202,25 +202,45 @@ class IndexController
 
    public function getUserDeckAction(Request $request, Application $app) {
       $parameters = $request->attributes->all();
-      $decksId = $app['repository.deck']->getDecksIdByIdUser($parameters['id']);
+      $decks = $app['repository.deck']->getDecksIdByIdUser($parameters['id']);
       $tabDecks = array();
-      //var_dump($decksId);
-      //echo "<br>";
       $tabCardsId = array();
-      foreach ($decksId as $id) {
+
+      foreach ($decks as $deck) {
          //var_dump($app['repository.card']->getCardsIdByIdDeck(intval($id['deckId'])));
          //die;
-         foreach ($app['repository.carddeck']->getCardsByIdDeck(intval($id['id'])) as $key  ) {
+         foreach ($app['repository.carddeck']->getCardsByIdDeck(intval($deck['id'])) as $key  ) {
             
             array_push($tabCardsId, $key);
          }
-         $tabCardsId[0]['id'] = intval($tabCardsId[0]['id']);
-         $tabCardsId[0]['deckId'] = intval($tabCardsId[0]['deckId']);
-         array_push($tabDecks, $tabCardsId);
+         if (count($tabCardsId) >0) {
+            $tabCardsId[0]['id'] = intval($tabCardsId[0]['id']);
+            $tabCardsId[0]['deckId'] = intval($tabCardsId[0]['deckId']);
+         }
+        
+         $deck['cards']= $tabCardsId;
+         array_push($tabDecks, $deck);
          $tabCardsId = array();
       }
-      //var_dump($tabDecks);
+
+
       return json_encode($tabDecks);
    }
 
+   
+public function DeleteDecksAction(Request $request, Application $app) {
+   $parameters = $request->attributes->all();
+
+   $app['repository.carddeck']->deleteCardsOfDeckByIdDeck(intval($parameters['id']));
+   $app['repository.deck']->deleteDeckById(intval($parameters['id']));
+   return "OK";
+}
+public function DeleteDeckByNameAction(Request $request, Application $app) {
+   $parameters = $request->attributes->all();
+
+   $deck = $app['repository.deck']->getDeckByName($parameters['name']);
+   $app['repository.carddeck']->deleteCardsOfDeckByIdDeck(intval($deck['id']));
+   $app['repository.deck']->deleteDeckById(intval($deck['id']));
+   return "OK";
+}
 }
