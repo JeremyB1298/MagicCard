@@ -186,9 +186,9 @@ class IndexController
    public function updateDeckAction(Request $request, Application $app) {
       $parameters = json_decode( $request->getContent(), true);
       foreach ($parameters as $key ) {
-         $app['repository.deck']->updateDeck($key);
+         $deck = $app['repository.deck']->getDeckByName($key['name']);
          $newTab = $key['cards'];
-         $tabCards = $app['repository.carddeck']->getCardsByIdDeck($key['id']);
+         $tabCards = $app['repository.carddeck']->getCardsByIdDeck(intval($deck['id']));
          foreach ($tabCards as $card ) {
             $app['repository.carddeck']->deleteCardsOfDeck(intval($card['id']));
 

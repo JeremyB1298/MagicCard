@@ -34,13 +34,11 @@ class DeckRepository
       }
 
     public function updateDeck($parameters){ 
-               $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
           ->update('deck')
-          ->where('id = :id')
-          ->set('name',':name')
+          ->where('name = :name')
           ->set('userId',':userId')
-          ->setParameter(':id', $parameters['id'])
           ->setParameter(':name', $parameters['name'])
           ->setParameter(':userId',$parameters['userId']);
 
