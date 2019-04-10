@@ -235,4 +235,12 @@ public function DeleteDecksAction(Request $request, Application $app) {
    $app['repository.deck']->deleteDeckById(intval($parameters['id']));
    return "OK";
 }
+public function DeleteDeckByNameAction(Request $request, Application $app) {
+   $parameters = $request->attributes->all();
+
+   $deck = $app['repository.deck']->getDeckByName($parameters['name']);
+   $app['repository.carddeck']->deleteCardsOfDeckByIdDeck(intval($deck['id']));
+   $app['repository.deck']->deleteDeckById(intval($deck['id']));
+   return "OK";
+}
 }
