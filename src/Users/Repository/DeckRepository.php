@@ -82,4 +82,17 @@ class DeckRepository
 
         $statement = $queryBuilder->execute();
     }
+
+    public function getDeckByName($name) {
+      $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('*')
+            ->from('deck', 'd')
+            ->where(' name = ?')
+            ->setParameter(0, $name);
+        $statement = $queryBuilder->execute();
+        $userDeckData = $statement->fetchAll();
+        return $userDeckData[0];
+    }
+
 }
