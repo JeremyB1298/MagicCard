@@ -16,3 +16,16 @@ $app->register(new TwigServiceProvider(), array(
 $app['repository.user'] = function ($app) {
     return new App\Users\Repository\UserRepository($app['db']);
 };
+$app['repository.card'] = function ($app) {
+    return new App\Users\Repository\CardRepository($app['db']);
+};
+
+$app['repository.carddeck'] = function ($app) {
+    return new App\Users\Repository\CardDeckRepository($app['db']);
+};
+$app['repository.deck'] = function ($app) {
+    return new App\Users\Repository\DeckRepository($app['db']);
+};
+$app['repository.friend'] = function ($app) {
+    return new App\Users\Repository\FriendRepository($app['db']);
+};
